@@ -23,7 +23,7 @@ Return exactly these fields:
 - **offer**: the promo in one line.
 - **threat**: `low`, `medium`, or `high`.
 
-If a field is not visible, write `unknown`. Do not invent it.
+If the image is not visible, or you cannot understand it, or you cannot decide competitor, offer, or threat, return the single line `NOT ABLE TO ANALYZE`. Do not guess and do not return partial fields.
 
 ## Threat
 
@@ -33,17 +33,25 @@ Judge threat only after reading the image.
 - **medium**: a clear price or offer a product manager should notice.
 - **high**: a sharp price cut, a flagship promo, or something that could move customers.
 
-If the image does not show enough to choose one of those, set threat to `unknown`.
+If you cannot decide the threat, return the single line `NOT ABLE TO ANALYZE`. Do not guess and do not return partial fields.
 
 ## Output
 
-Return only the three fields. No extra fields, no commentary, no search, no dashboard, and no Mixpanel.
+When you can decide all three fields, return only those fields. No extra fields, no commentary, no search, no dashboard, and no Mixpanel.
 
 ```
-competitor: <name or unknown>
-offer: <one line or unknown>
-threat: <low | medium | high | unknown>
+competitor: <name>
+offer: <one line>
+threat: <low | medium | high>
 ```
+
+If the image is not visible, or you cannot understand it, or you cannot decide competitor, offer, or threat, return only this line:
+
+```
+NOT ABLE TO ANALYZE
+```
+
+Do not guess and do not return partial fields.
 
 ## Data
 
